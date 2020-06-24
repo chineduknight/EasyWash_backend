@@ -12,7 +12,13 @@ services:
         # managementApiSecret: my-secret
         databases:
           default:
-            connector: mongo
-            uri: $MONGO_URI
+            connector: postgres
+            host: host.docker.internal
             database: easywash
- 
+            schema: public
+            user: knt
+            password: thisPass!!
+            ssl: false
+            rawAccess: true
+            port: '5432'
+            migrations: true

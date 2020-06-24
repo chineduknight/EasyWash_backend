@@ -1,23 +1,23 @@
-import express, { Request, Response } from 'express';
+import 'dotenv/config';
+import express from 'express';
 import session from 'express-session'
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './typeDefs'
 import resolvers from './resolvers';
-import connectMongo from 'connect-mongo'
+import connectPG from 'connect-pg-simple'
 import cors from 'cors';
-import 'dotenv/config';
-import { prisma } from './prisma-mongo/generated/prisma-client/index'
-const MongoStore = connectMongo(session)
+import { prisma } from './prisma/generated/prisma-client/index'
 
-const SESS_LIFETIME = 1000 * 60 * 60 * 2
+const PGstore = connectPG(session);
+
+const SESS_LIFETIME = 1000 * 60 * 60 * 2;
 
 const {
   SESS_NAME = 'sid',
   SESS_SECRET = 'asdfasdf/wer325',
   NODE_ENV = 'development',
-  MONGO_URI = ''
+  DB_URL
 } = process.env
-console.log('mongod',MONGO_URI);
 
 const IN_PROD = NODE_ENV === 'production'
 const app = express();
@@ -27,7 +27,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   secret: SESS_SECRET,
-  store: new MongoStore({ url: MONGO_URI }),
+  store: new PGstore({
+    conString: DB_URL
+  }),
   cookie: {
     maxAge: SESS_LIFETIME,
     sameSite: true,
@@ -59,7 +61,7 @@ const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context({ req, res }: { req: Request, res: Response }) {
+    context({ req, res }: { req:any, res: any }) {
       return {
         prisma,
         req,
