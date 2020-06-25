@@ -6,7 +6,8 @@ import typeDefs from './typeDefs'
 import resolvers from './resolvers';
 import connectPG from 'connect-pg-simple'
 import cors from 'cors';
-import { prisma } from './prisma/generated/prisma-client/index'
+import { prisma } from './prisma/generated/prisma-client/index.js'
+
 
 const PGstore = connectPG(session);
 
@@ -61,7 +62,7 @@ const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context({ req, res }: { req:any, res: any }) {
+    context({ req, res }: { req: any, res: any }) {
       return {
         prisma,
         req,

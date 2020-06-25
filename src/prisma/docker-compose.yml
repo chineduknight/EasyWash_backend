@@ -14,10 +14,10 @@ services:
           default:
             connector: postgres
             host: host.docker.internal
-            database: easywash
+            database: easyw
             schema: public
-            user: knt
-            password: thisPass!!
+            user: postgres
+            password: Alvaro334
             ssl: false
             rawAccess: true
             port: '5432'
