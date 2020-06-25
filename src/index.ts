@@ -72,7 +72,7 @@ const startServer = async () => {
     },
     playground: NODE_ENV === "development" ? {
       settings
-    }:false,
+    }:true,
     formatError: (error: any) => {
       return errorHandler(error);
     },
