@@ -44,7 +44,7 @@ app.use(session({
 // Enable CORS
 app.use(cors({
   credentials: true,
-  origin:NODE_ENV === "development" ? LOCAL_URL : PROD_URL,
+  origin: NODE_ENV === "development" ? LOCAL_URL : PROD_URL,
 }));
 app.use(morgan('tiny'));
 
@@ -72,7 +72,9 @@ const startServer = async () => {
     },
     playground: NODE_ENV === "development" ? {
       settings
-    }:true,
+    } : true,
+    introspection: NODE_ENV === "development" ? undefined : true,
+
     formatError: (error: any) => {
       return errorHandler(error);
     },
