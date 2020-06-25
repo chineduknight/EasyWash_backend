@@ -7,6 +7,7 @@ import resolvers from './resolvers';
 // import connectPG from 'connect-pg-simple'
 import cors from 'cors';
 import { prisma } from './prisma/generated/prisma-client/index'
+import morgan from 'morgan';
 
 
 // const PGstore = connectPG(session);
@@ -45,6 +46,7 @@ app.use(cors({
   credentials: true,
   origin:NODE_ENV === "development" ? LOCAL_URL : PROD_URL,
 }));
+app.use(morgan('tiny'));
 
 
 interface playgroundSettings {
