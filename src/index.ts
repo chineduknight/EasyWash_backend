@@ -4,12 +4,12 @@ import session from 'express-session'
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './typeDefs'
 import resolvers from './resolvers';
-import connectPG from 'connect-pg-simple'
+// import connectPG from 'connect-pg-simple'
 import cors from 'cors';
 import { prisma } from './prisma/generated/prisma-client/index'
 
 
-const PGstore = connectPG(session);
+// const PGstore = connectPG(session);
 const SESS_LIFETIME = 1000 * 60 * 60 * 2;
 
 const {
@@ -18,7 +18,7 @@ const {
   NODE_ENV,
   LOCAL_URL,
   PROD_URL,
-  DATABASE_URL
+  // DATABASE_URL
 } = process.env
 
 const IN_PROD = NODE_ENV === 'production'
@@ -26,12 +26,12 @@ const app = express();
 
 app.use(session({
   name: SESS_NAME,
+  secret: SESS_SECRET,
   resave: false,
   saveUninitialized: false,
-  secret: SESS_SECRET,
-  store: new PGstore({
-    conString: DATABASE_URL
-  }),
+  // store: new PGstore({
+  //   conString: DATABASE_URL
+  // }),
   cookie: {
     maxAge: SESS_LIFETIME,
     sameSite: true,
