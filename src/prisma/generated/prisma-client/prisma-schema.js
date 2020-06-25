@@ -57,7 +57,7 @@ type User {
   password: String
   phone: String
   text: String
-  nefile: String
+  asd: String
 }
 
 type UserConnection {
@@ -73,7 +73,7 @@ input UserCreateInput {
   password: String
   phone: String
   text: String
-  nefile: String
+  asd: String
 }
 
 type UserEdge {
@@ -94,8 +94,8 @@ enum UserOrderByInput {
   phone_DESC
   text_ASC
   text_DESC
-  nefile_ASC
-  nefile_DESC
+  asd_ASC
+  asd_DESC
 }
 
 type UserPreviousValues {
@@ -105,7 +105,7 @@ type UserPreviousValues {
   password: String
   phone: String
   text: String
-  nefile: String
+  asd: String
 }
 
 type UserSubscriptionPayload {
@@ -132,7 +132,7 @@ input UserUpdateInput {
   password: String
   phone: String
   text: String
-  nefile: String
+  asd: String
 }
 
 input UserUpdateManyMutationInput {
@@ -141,7 +141,7 @@ input UserUpdateManyMutationInput {
   password: String
   phone: String
   text: String
-  nefile: String
+  asd: String
 }
 
 input UserWhereInput {
@@ -229,20 +229,20 @@ input UserWhereInput {
   text_not_starts_with: String
   text_ends_with: String
   text_not_ends_with: String
-  nefile: String
-  nefile_not: String
-  nefile_in: [String!]
-  nefile_not_in: [String!]
-  nefile_lt: String
-  nefile_lte: String
-  nefile_gt: String
-  nefile_gte: String
-  nefile_contains: String
-  nefile_not_contains: String
-  nefile_starts_with: String
-  nefile_not_starts_with: String
-  nefile_ends_with: String
-  nefile_not_ends_with: String
+  asd: String
+  asd_not: String
+  asd_in: [String!]
+  asd_not_in: [String!]
+  asd_lt: String
+  asd_lte: String
+  asd_gt: String
+  asd_gte: String
+  asd_contains: String
+  asd_not_contains: String
+  asd_starts_with: String
+  asd_not_starts_with: String
+  asd_ends_with: String
+  asd_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
