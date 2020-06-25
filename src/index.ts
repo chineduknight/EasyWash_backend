@@ -8,7 +8,7 @@ import resolvers from './resolvers';
 import cors from 'cors';
 import { prisma } from './prisma/generated/prisma-client/index'
 import morgan from 'morgan';
-
+import errorHandler from './utils/error'
 
 // const PGstore = connectPG(session);
 const SESS_LIFETIME = 1000 * 60 * 60 * 2;
@@ -73,6 +73,9 @@ const startServer = async () => {
     playground: NODE_ENV === "development" ? {
       settings
     }:false,
+    formatError: (error: any) => {
+      return errorHandler(error);
+    },
   });
 
   server.applyMiddleware({
