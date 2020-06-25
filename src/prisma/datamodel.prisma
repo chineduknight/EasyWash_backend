@@ -4,4 +4,5 @@ type User {
   email: String! @unique
   password:String
   phone: String @unique
+  text: String 
 }
