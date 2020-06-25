@@ -5,4 +5,5 @@ type User {
   password:String
   phone: String @unique
   text: String 
+  nefile:String
 }
