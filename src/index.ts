@@ -13,9 +13,11 @@ const PGstore = connectPG(session);
 const SESS_LIFETIME = 1000 * 60 * 60 * 2;
 
 const {
-  SESS_NAME = 'sid',
-  SESS_SECRET = 'asdfasdf/wer325',
-  NODE_ENV = 'development',
+  SESS_NAME,
+  SESS_SECRET,
+  NODE_ENV,
+  LOCAL_URL,
+  PROD_URL,
   DB_URL
 } = process.env
 
@@ -41,10 +43,8 @@ app.use(session({
 // Enable CORS
 app.use(cors({
   credentials: true,
-  origin: '*'
-  // origin: 'http://localhost:3579'
+  origin:NODE_ENV === "development" ? LOCAL_URL : PROD_URL,
 }));
-// app.use(cors())
 
 
 interface playgroundSettings {
@@ -68,9 +68,9 @@ const startServer = async () => {
         res
       }
     },
-    playground: {
+    playground: NODE_ENV === "development" ? {
       settings
-    },
+    }:false,
   });
 
   server.applyMiddleware({
