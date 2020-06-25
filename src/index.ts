@@ -6,11 +6,10 @@ import typeDefs from './typeDefs'
 import resolvers from './resolvers';
 import connectPG from 'connect-pg-simple'
 import cors from 'cors';
-import { prisma } from './prisma/generated/prisma-client/index.js'
+import { prisma } from './prisma/generated/prisma-client/index'
 
 
 const PGstore = connectPG(session);
-
 const SESS_LIFETIME = 1000 * 60 * 60 * 2;
 
 const {
