@@ -18,7 +18,7 @@ const {
   NODE_ENV,
   LOCAL_URL,
   PROD_URL,
-  DB_URL
+  DATABASE_URL
 } = process.env
 
 const IN_PROD = NODE_ENV === 'production'
@@ -30,7 +30,7 @@ app.use(session({
   saveUninitialized: false,
   secret: SESS_SECRET,
   store: new PGstore({
-    conString: DB_URL
+    conString: DATABASE_URL
   }),
   cookie: {
     maxAge: SESS_LIFETIME,
